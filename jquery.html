@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ToDoList Jquery</title>
+    <script src="jquery1.11.3.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" id="inputContent">
+        <button id="btn">提交</button>
+        <ul class="ulList">
+        </ul>
+    </div>
+    <script>
+        // M 模型层 V 视图层 P 控制层
+        function Page() {
+
+        }
+        $.extend(Page.prototype, {
+            init: function () {
+                this.bindEvents();
+            },
+            bindEvents: function () {
+                var btn = $('#btn');
+                btn.on('click', $.proxy(this.handleBtnClick, this));
+            },
+            handleBtnClick: function () {
+                var newItem = $('#inputContent').val();
+                var tag = '<li>' + newItem + '</li>';
+                $('.ulList').append(tag);
+            }
+        });
+
+        var page = new Page();
+        page.init();
+        // function handleBtnClick() {
+        //     var newItem = $('#inputContent').val();
+        //     var tag = '<li>' + newItem + '</li>';
+        //     $('.ulList').append(tag);
+        // }
+    </script>
+</body>
+
+</html>
